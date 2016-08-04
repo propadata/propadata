@@ -1,0 +1,42 @@
+{
+  "name": "propadata",
+  "version": "0.0.1",
+  "description": "couchdb client data",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "lab -a code -t 100 -L -m 10000 -v",
+    "couchdb": "lab test/couchdb.js -a code -t 100 -L -m 10000 -v",
+    "test-cov-html": "lab -a code -r html -o coverage.html -m 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/propadata/propadata.git"
+  },
+  "keywords": [
+    "couchdb",
+    "client",
+    "data"
+  ],
+  "author": "Jon Swenson",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/propadata/propadata/issues"
+  },
+  "homepage": "https://github.com/propadata/propadata#readme",
+  "engines": {
+    "node": ">=4.x.x"
+  },
+  "devDependencies": {
+    "code": "3.x.x",
+    "lab": "10.x.x"
+  },
+  "dependencies": {
+    "boom": "3.x.x",
+    "hoek": "4.x.x",
+    "joi": "9.x.x",
+    "request": "2.x.x"
+  }
+}
