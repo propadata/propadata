@@ -21,6 +21,7 @@ describe('Propadata start', () => {
 
         const db = new Propadata(internals.manifest);
 
+
         expect(db).to.exist();
         done();
 
