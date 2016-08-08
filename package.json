@@ -27,7 +27,8 @@
   },
   "homepage": "https://github.com/propadata/propadata#readme",
   "engines": {
-    "node": ">=4.x.x"
+    "node": ">=4.x.x",
+    "npm": ">= 3.x"
   },
   "devDependencies": {
     "code": "3.x.x",
