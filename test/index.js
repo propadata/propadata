@@ -14,16 +14,14 @@ const describe = lab.describe;
 const it = lab.it;
 const expect = Code.expect;
 
-describe('Propadata start', () => {
-
+describe('TEST Propadata start', () => {
 
     it('connect', (done) => {
 
         const db = new Propadata(internals.manifest);
 
-
         expect(db).to.exist();
-        done();
+        return done(db.destroy());
 
         // db.connect('sofajs-couchdb1', (err, result) => {
 
@@ -32,8 +30,41 @@ describe('Propadata start', () => {
         //     done();
         // });
     });
+});
 
+describe('rethinkdb basics', () => {
 
+    it('destroy', (done) => {
+
+        const db = new Propadata(internals.manifest);
+
+        db.destroy(null, (err, propadata) => {
+
+            expect(propadata.rethinkdb).to.equal(null);
+            return done();
+        });
+
+    });
+
+    it('connect', (done) => {
+
+        const db = new Propadata(internals.manifest);
+
+        db.getPropadata((propadata) => {
+
+            console.log('test!!! ' + Object.keys(propadata.rethinkdb).length);
+            const length = Object.keys(propadata.rethinkdb).length;
+            expect(length).to.equal(2);
+
+            return propadata.rethinkdb.rethinkdb1.connect((err, connection) => {
+
+                console.log('connection: ' + Object.keys(connection));
+                console.log('db: ' + connection.host);
+                return done(db.destroy());
+            });
+        });
+
+    });
 });
 
 internals.manifest = {
@@ -74,5 +105,24 @@ internals.manifest = {
                                   // in ./etc/couchdb/local.ini.
                                   // example in milliseconds, default is 10 mins 600000
             live: false
-        }]
+        },
+        {
+            name: 'rethinkdb1',       // redis filler values
+            type: 'rethinkdb',        // redis, couchdb, or ....
+            host: 'localhost',
+            port: 28015,
+            user: 'waka',
+            pw: 'wakatime',
+            live: false
+        },
+        {
+            name: 'rethinkdb2',
+            type: 'rethinkdb',
+            host: 'localhost',
+            port: 28015,
+            user: 'waka',
+            pw: 'wakatime',
+            live: false
+        }
+    ]
 };
