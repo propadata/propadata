@@ -34,36 +34,62 @@ describe('TEST Propadata start', () => {
 
 describe('rethinkdb basics', () => {
 
-    it('destroy', (done) => {
+    //it('destroy', (done) => {
 
+    //    const db = new Propadata(internals.manifest);
+
+    //    db.destroy(null, (err, propadata) => {
+
+    //        expect(propadata.rethinkdb).to.equal(null);
+    //        return done();
+    //    });
+
+    //});
+
+    //it('connect', (done) => {
+
+    //    const db = new Propadata(internals.manifest);
+
+    //    db.getPropadata((propadata) => {
+
+    //        //console.log('test!!! ' + Object.keys(propadata.rethinkdb).length);
+    //        const length = Object.keys(propadata.rethinkdb).length;
+    //        expect(length).to.equal(2);
+
+    //        return propadata.rethinkdb.rethinkdb1.connect((err, connection) => {
+
+    //            //console.log('connection: ' + Object.keys(connection));
+    //            //console.log('db: ' + connection.host);
+    //            return done(db.destroy());
+    //        });
+    //    });
+
+    //});
+
+    it('register rethinkdb request plugin', (done) => {
+
+        //console.log('composition options!!!!! ' + internals.manifest.compositionOptions.relativeTo);
         const db = new Propadata(internals.manifest);
 
-        db.destroy(null, (err, propadata) => {
+        db.compose(internals.manifest, function () {
 
-            expect(propadata.rethinkdb).to.equal(null);
-            return done();
+            console.log('#####');
+            console.log('propadata object result');
+            console.log(Object.keys(db.propadata.rethinkdb));
+            console.log(Object.keys(db.propadata.rethinkdb.rethinkdb2.One));
+            //console.log(JSON.stringify(db.propadata.rethinkdb.rethinkdb2.One.testOne()));
+            db.propadata.rethinkdb.rethinkdb2.One.testOne('param1');
+
+
+            done();
         });
+        //db.getPropadata((propadata) => {
 
-    });
-
-    it('connect', (done) => {
-
-        const db = new Propadata(internals.manifest);
-
-        db.getPropadata((propadata) => {
-
-            console.log('test!!! ' + Object.keys(propadata.rethinkdb).length);
-            const length = Object.keys(propadata.rethinkdb).length;
-            expect(length).to.equal(2);
-
-            return propadata.rethinkdb.rethinkdb1.connect((err, connection) => {
-
-                console.log('connection: ' + Object.keys(connection));
-                console.log('db: ' + connection.host);
-                return done(db.destroy());
-            });
-        });
-
+        //    console.log('     watch*****');
+        //    console.log('     ' + propadata.rethinkdb);
+        //    console.log('     ' + JSON.stringify(propadata));
+        //    return done();
+        //});
     });
 });
 
@@ -113,7 +139,8 @@ internals.manifest = {
             port: 28015,
             user: 'waka',
             pw: 'wakatime',
-            live: false
+            live: false,
+            registrations: []
         },
         {
             name: 'rethinkdb2',
@@ -122,7 +149,15 @@ internals.manifest = {
             port: 28015,
             user: 'waka',
             pw: 'wakatime',
-            live: false
+            live: false,
+            registrations: [
+                {
+                    plugin: '../example/rethinkdb/one.js'
+                }
+            ]
         }
-    ]
+    ],
+    compositionOptions: {
+        relativeTo: __dirname
+    }
 };
