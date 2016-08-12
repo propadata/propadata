@@ -34,18 +34,6 @@ describe('TEST Propadata start', () => {
 
 describe('rethinkdb basics', () => {
 
-    //it('destroy', (done) => {
-
-    //    const db = new Propadata(internals.manifest);
-
-    //    db.destroy(null, (err, propadata) => {
-
-    //        expect(propadata.rethinkdb).to.equal(null);
-    //        return done();
-    //    });
-
-    //});
-
     //it('connect', (done) => {
 
     //    const db = new Propadata(internals.manifest);
@@ -68,28 +56,20 @@ describe('rethinkdb basics', () => {
 
     it('register rethinkdb request plugin', (done) => {
 
-        //console.log('composition options!!!!! ' + internals.manifest.compositionOptions.relativeTo);
         const db = new Propadata(internals.manifest);
 
-        db.compose(internals.manifest, function () {
+        db.compose(internals.manifest, function (err, propadata) {
 
             console.log('#####');
-            console.log('propadata object result');
-            console.log(Object.keys(db.propadata.rethinkdb));
-            console.log(Object.keys(db.propadata.rethinkdb.rethinkdb2.One));
-            console.log(JSON.stringify(db.propadata.rethinkdb.rethinkdb2.One.testOne()));
+            console.log('composing test');
+            //console.log(Object.keys(db.propadata.rethinkdb));
+
+            // console.log(Object.keys(db.propadata.rethinkdb.rethinkdb2.One));
+            // console.log(JSON.stringify(db.propadata.rethinkdb.rethinkdb2.One.testOne()));
             db.propadata.rethinkdb.rethinkdb2.One.testOne('param1');
-
-
-            done();
+            db.propadata.rethinkdb.rethinkdb2.One.testTwo('testTwo parameter.');
+            return done(db.destroy());
         });
-        //db.getPropadata((propadata) => {
-
-        //    console.log('     watch*****');
-        //    console.log('     ' + propadata.rethinkdb);
-        //    console.log('     ' + JSON.stringify(propadata));
-        //    return done();
-        //});
     });
 });
 

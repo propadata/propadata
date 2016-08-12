@@ -1,6 +1,6 @@
 'use strict';
 
-const Path = require('path');
+// const Path = require('path');
 
 exports.register = (plugin, options, next) => {
 
@@ -11,14 +11,16 @@ exports.register = (plugin, options, next) => {
             name: 'testOne',
             handler: function (param, callback) {
 
-                console.log('testOne executed ' + param);
+                console.log('testOne executed: ' + param);
+                return param;
             }
         },
         {
             name: 'testTwo',
-            handler: function () {
+            handler: function (param, callback) {
 
-                console.log('testTwo executed');
+                console.log('testTwo executed: ' + param);
+                return param;
             }
         }
     ]);

@@ -35,6 +35,7 @@
     "lab": "10.x.x"
   },
   "dependencies": {
+    "async": "2.x.x",
     "boom": "3.x.x",
     "hoek": "4.x.x",
     "joi": "9.x.x",
