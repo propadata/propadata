@@ -77,7 +77,7 @@ describe('rethinkdb basics', () => {
             console.log('propadata object result');
             console.log(Object.keys(db.propadata.rethinkdb));
             console.log(Object.keys(db.propadata.rethinkdb.rethinkdb2.One));
-            //console.log(JSON.stringify(db.propadata.rethinkdb.rethinkdb2.One.testOne()));
+            console.log(JSON.stringify(db.propadata.rethinkdb.rethinkdb2.One.testOne()));
             db.propadata.rethinkdb.rethinkdb2.One.testOne('param1');
 
 
