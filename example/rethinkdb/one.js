@@ -12,6 +12,7 @@ exports.register = (plugin, options, next) => {
             handler: function (param, callback) {
 
                 console.log('testOne executed: ' + param);
+                // console.log('     - connection ' + this.connection);
                 return param;
             }
         },

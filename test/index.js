@@ -63,7 +63,6 @@ describe('rethinkdb basics', () => {
             console.log('#####');
             console.log('composing test');
             //console.log(Object.keys(db.propadata.rethinkdb));
-
             // console.log(Object.keys(db.propadata.rethinkdb.rethinkdb2.One));
             // console.log(JSON.stringify(db.propadata.rethinkdb.rethinkdb2.One.testOne()));
             db.propadata.rethinkdb.rethinkdb2.One.testOne('param1');
@@ -113,7 +112,7 @@ internals.manifest = {
             live: false
         },
         {
-            name: 'rethinkdb1',       // redis filler values
+            name: 'rethinkdbOne',       // redis filler values
             type: 'rethinkdb',        // redis, couchdb, or ....
             host: 'localhost',
             port: 28015,
