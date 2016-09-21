@@ -13,14 +13,14 @@ exports.register = (plugin, options, next) => {
 
                 console.log('testOne executed: ' + param);
                 // console.log('     - connection ' + this.connection);
-                return param;
+                return callback(null, '     success: ' + param);
             }
         },
         {
             name: 'testTwo',
             handler: function (param, callback) {
 
-                console.log('testTwo executed: ' + param);
+                console.log('     testTwo executed: ' + param);
                 return param;
             }
         }

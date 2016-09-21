@@ -65,7 +65,7 @@ describe('rethinkdb basics', () => {
             //console.log(Object.keys(db.propadata.rethinkdb));
             // console.log(Object.keys(db.propadata.rethinkdb.rethinkdb2.One));
             // console.log(JSON.stringify(db.propadata.rethinkdb.rethinkdb2.One.testOne()));
-            db.propadata.rethinkdb.rethinkdb2.One.testOne('param1');
+            db.propadata.rethinkdb.rethinkdb2.One.testOne('param1', (err, result) => { console.log('callback result: ' + result);});
             db.propadata.rethinkdb.rethinkdb2.One.testTwo('testTwo parameter.');
             return done(db.destroy());
         });
